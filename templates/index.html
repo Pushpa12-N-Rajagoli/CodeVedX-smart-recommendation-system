@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Movie Recommendation System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>🎬 Smart Movie Recommendation System</h1>
+
+       
+        
+
+    </div>
+
+
+    <!-- MAIN CARD -->
+
+    <div class="main-card">
+
+        <h2>🎥 Find Movies You May Like</h2>
+
+        <p class="description">
+            Select a movie and let our AI recommend similar movies for you.
+        </p>
+
+
+        <!-- MOVIE FORM -->
+
+        <form method="POST">
+
+            <select name="movie_title" required>
+
+                <option value="">
+                    🎬 Choose a movie...
+                </option>
+
+                <option value="The Dark Knight">
+                    The Dark Knight
+                </option>
+
+                <option value="Inception">
+                    Inception
+                </option>
+
+                <option value="Interstellar">
+                    Interstellar
+                </option>
+
+                <option value="The Matrix">
+                    The Matrix
+                </option>
+
+                <option value="Avengers: Endgame">
+                    Avengers: Endgame
+                </option>
+
+                <option value="Iron Man">
+                    Iron Man
+                </option>
+
+                <option value="Jurassic Park">
+                    Jurassic Park
+                </option>
+
+                <option value="Titanic">
+                    Titanic
+                </option>
+
+                <option value="The Notebook">
+                    The Notebook
+                </option>
+
+                <option value="Avatar">
+                    Avatar
+                </option>
+
+                <option value="The Hangover">
+                    The Hangover
+                </option>
+
+                <option value="Home Alone">
+                    Home Alone
+                </option>
+
+                <option value="Harry Potter and the Sorcerer's Stone">
+                    Harry Potter and the Sorcerer's Stone
+                </option>
+
+                <option value="The Lord of the Rings">
+                    The Lord of the Rings
+                </option>
+
+                <option value="The Pursuit of Happyness">
+                    The Pursuit of Happyness
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                🔍 Get AI Recommendations
+            </button>
+
+        </form>
+
+
+        <!-- RECOMMENDATIONS -->
+
+        {% if recommendations %}
+
+        <div class="recommendations">
+
+            <h2>🎯 Recommended For You</h2>
+
+
+            <div class="movie-grid">
+
+                {% for movie in recommendations %}
+
+                <div class="movie-card">
+
+                    <div class="number">
+                        {{ loop.index }}
+                    </div>
+
+                    <h3>
+                        {{ movie.title }}
+                    </h3>
+
+                    <span class="genre">
+                        {{ movie.genre }}
+                    </span>
+
+                    
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- NO RESULT MESSAGE -->
+
+        {% if movie_title and not recommendations %}
+
+        <div class="recommendations">
+
+            <h2>⚠️ No Recommendations Found</h2>
+
+            <p class="description">
+                Sorry, no recommendations were found for
+                "{{ movie_title }}".
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Powered by TF-IDF + Cosine Similarity |
+        Smart Movie Recommendation System
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
